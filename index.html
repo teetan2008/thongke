@@ -1,162 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bài ToánThống Kê</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thống kê nhóm</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        background-color: #f9f9f9;
-      }
-      .container {
-        max-width: 800px;
-        margin: 20px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      h1 {
-        text-align: center;
-        color: #333;
-      }
-      input,
-      button {
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-      button {
-        background-color: #28a745;
-        color: white;
-        font-size: 16px;
-        cursor: pointer;
-      }
-      button:hover {
-        background-color: #218838;
-      }
-      .result {
-        margin-top: 20px;
-        padding: 10px;
-        background: #f1f1f1;
-        border-radius: 4px;
-      }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="container">
-      <h1>Giải Bài Toán Thống Kê By TeeTan</h1>
-      <label for="n">Số nhóm:</label>
-      <input type="number" id="n" placeholder="Nhập số nhóm" />
+        <h1>Giải bài toán thống kê</h1>
+        <label for="n">Số nhóm:</label>
+        <input type="number" id="n" placeholder="Nhập số nhóm">
 
-      <label for="lf">Đầu mút trái của nhóm đầu tiên:</label>
-      <input type="number" id="lf" placeholder="Nhập đầu mút trái" />
+        <label for="lf">Đầu mút trái của nhóm đầu tiên:</label>
+        <input type="number" id="lf" placeholder="Nhập đầu mút trái">
 
-      <label for="rf">Đầu mút phải của nhóm đầu tiên:</label>
-      <input type="number" id="rf" placeholder="Nhập đầu mút phải" />
+        <label for="rf">Đầu mút phải của nhóm đầu tiên:</label>
+        <input type="number" id="rf" placeholder="Nhập đầu mút phải">
 
-      <label for="kc">Khoảng cách giữa 2 nhóm:</label>
-      <input type="number" id="kc" placeholder="Nhập khoảng cách" />
+        <label for="kc">Khoảng cách giữa 2 nhóm:</label>
+        <input type="number" id="kc" placeholder="Nhập khoảng cách">
 
-      <label for="ts">Tần số của từng nhóm (cách nhau bởi dấu phẩy):</label>
-      <input type="text" id="ts" placeholder="Ví dụ: 5,10,15" />
+        <label for="ts">Tần số của từng nhóm (cách nhau bởi dấu phẩy):</label>
+        <input type="text" id="ts" placeholder="Ví dụ: 5,10,15">
 
-      <button onclick="solveStatistics()">Tính toán</button>
+        <button onclick="solveStatistics()">Tính toán</button>
 
-      <div id="results" class="result"></div>
+        <div id="results" class="result"></div>
+    </div>
+
+    <div class="footer">
+        Mọi thắc mắc có thể liên hệ với tôi qua <a href="https://www.facebook.com/teetan2008/" target="_blank">Facebook</a> và <a href="https://zalo.me/0378570289" target="_blank">Zalo</a>.
     </div>
 
     <script>
-      function solveStatistics() {
-        const n = parseInt(document.getElementById("n").value);
-        const lf = parseFloat(document.getElementById("lf").value);
-        const rf = parseFloat(document.getElementById("rf").value);
-        const kc = parseFloat(document.getElementById("kc").value);
-        const ts = document.getElementById("ts").value.split(",").map(Number);
+        function solveStatistics() {
+            const n = parseInt(document.getElementById('n').value);
+            const lf = parseFloat(document.getElementById('lf').value);
+            const rf = parseFloat(document.getElementById('rf').value);
+            const kc = parseFloat(document.getElementById('kc').value);
+            const ts = document.getElementById('ts').value.split(',').map(Number);
 
-        if (ts.length !== n) {
-          alert("Số lượng tần số phải khớp với số nhóm!");
-          return;
-        }
+            if (ts.length !== n) {
+                alert('Số lượng tần số phải khớp với số nhóm!');
+                return;
+            }
 
-        const trai = [lf];
-        const phai = [rf];
-        const dd = rf - lf;
+            const trai = [lf];
+            const phai = [rf];
+            const dd = rf - lf;
 
-        for (let i = 1; i < n; i++) {
-          trai.push(kc + trai[i - 1] + dd);
-          phai.push(trai[i] + dd);
-        }
+            for (let i = 1; i < n; i++) {
+                trai.push(kc + trai[i - 1] + dd);
+                phai.push(trai[i] + dd);
+            }
 
-        const gtdd = trai.map((t, i) => (t + phai[i]) / 2);
-        const tstl = ts.reduce((acc, curr, i) => {
-          acc.push((acc[i - 1] || 0) + curr);
-          return acc;
-        }, []);
+            const gtdd = trai.map((t, i) => (t + phai[i]) / 2);
+            const tstl = ts.reduce((acc, curr, i) => {
+                acc.push((acc[i - 1] || 0) + curr);
+                return acc;
+            }, []);
 
-        const N = tstl[tstl.length - 1];
-        const tb = gtdd.reduce((sum, g, i) => sum + g * ts[i], 0) / N;
-        const tsmax = Math.max(...ts);
-        const maxIndex = ts.indexOf(tsmax);
+            const N = tstl[tstl.length - 1];
+            const tb = (gtdd.reduce((sum, g, i) => sum + g * ts[i], 0) / N).toFixed(4);
+            const tsmax = Math.max(...ts);
+            const maxIndex = ts.indexOf(tsmax);
 
-        const up = trai[maxIndex];
-        const tsmax0 = ts[maxIndex - 1] || 0;
-        const tsmax1 = ts[maxIndex + 1] || 0;
-        const mot =
-          up + ((tsmax - tsmax0) / (tsmax - tsmax0 + (tsmax - tsmax1))) * dd;
+            const up = trai[maxIndex];
+            const tsmax0 = ts[maxIndex - 1] || 0;
+            const tsmax1 = ts[maxIndex + 1] || 0;
+            const mot = (up + ((tsmax - tsmax0) / ((tsmax - tsmax0) + (tsmax - tsmax1))) * dd).toFixed(4);
 
-        const q1thuoc = N / 4;
-        const q2thuoc = N / 2;
-        const q3thuoc = (N * 3) / 4;
+            const q1thuoc = N / 4;
+            const q2thuoc = N / 2;
+            const q3thuoc = (N * 3) / 4;
 
-        let q1 = null,
-          q2 = null,
-          q3 = null;
-        let q1Group = null,
-          q2Group = null,
-          q3Group = null;
+            let q1 = null, q2 = null, q3 = null;
+            let q1Group = null, q2Group = null, q3Group = null;
 
-        for (let i = 0; i < n; i++) {
-          if (tstl[i] >= q1thuoc && q1 === null) {
-            q1 = trai[i] + ((q1thuoc - (tstl[i - 1] || 0)) / ts[i]) * dd;
-            q1Group = `[${trai[i]}; ${phai[i]})`;
-          }
-          if (tstl[i] >= q2thuoc && q2 === null) {
-            q2 = trai[i] + ((q2thuoc - (tstl[i - 1] || 0)) / ts[i]) * dd;
-            q2Group = `[${trai[i]}; ${phai[i]})`;
-          }
-          if (tstl[i] >= q3thuoc && q3 === null) {
-            q3 = trai[i] + ((q3thuoc - (tstl[i - 1] || 0)) / ts[i]) * dd;
-            q3Group = `[${trai[i]}; ${phai[i]})`;
-          }
-        }
+            for (let i = 0; i < n; i++) {
+                if (tstl[i] >= q1thuoc && q1 === null) {
+                    q1 = (trai[i] + ((q1thuoc - (tstl[i - 1] || 0)) / ts[i]) * dd).toFixed(4);
+                    q1Group = `[${trai[i]}; ${phai[i]})`;
+                }
+                if (tstl[i] >= q2thuoc && q2 === null) {
+                    q2 = (trai[i] + ((q2thuoc - (tstl[i - 1] || 0)) / ts[i]) * dd).toFixed(4);
+                    q2Group = `[${trai[i]}; ${phai[i]})`;
+                }
+                if (tstl[i] >= q3thuoc && q3 === null) {
+                    q3 = (trai[i] + ((q3thuoc - (tstl[i - 1] || 0)) / ts[i]) * dd).toFixed(4);
+                    q3Group = `[${trai[i]}; ${phai[i]})`;
+                }
+            }
 
-        document.getElementById("results").innerHTML = `
-                <p><strong>Các nhóm:</strong> ${trai
-                  .map((t, i) => `[${t}; ${phai[i]})`)
-                  .join(", ")}</p>
-                <p><strong>Giá trị đại diện:</strong> ${gtdd.join(", ")}</p>
-                <p><strong>Tần số tích lũy:</strong> ${tstl.join(", ")}</p>
+            document.getElementById('results').innerHTML = `
+                <p><strong>Các nhóm:</strong> ${trai.map((t, i) => `[${t}; ${phai[i]})`).join(', ')}</p>
+                <p><strong>Giá trị đại diện:</strong> ${gtdd.join(', ')}</p>
+                <p><strong>Tần số tích lũy:</strong> ${tstl.join(', ')}</p>
                 <p><strong>N:</strong> ${N}</p>
-                <p><strong>Số trung bình:</strong> ${tb.toFixed(2)}</p>
-                <p><strong>Mốt:</strong> ${mot.toFixed(2)}</p>
-                <p><strong>Q1:</strong> ${q1.toFixed(
-                  2
-                )} (Thuộc nhóm: ${q1Group})</p>
-                <p><strong>Q2:</strong> ${q2.toFixed(
-                  2
-                )} (Thuộc nhóm: ${q2Group})</p>
-                <p><strong>Q3:</strong> ${q3.toFixed(
-                  2
-                )} (Thuộc nhóm: ${q3Group})</p>
+                <p><strong>Số trung bình:</strong> ${tb}</p>
+                <p><strong>Mốt:</strong> ${mot}</p>
+                <p><strong>Q1:</strong> ${q1} (Thuộc nhóm: ${q1Group})</p>
+                <p><strong>Q2:</strong> ${q2} (Thuộc nhóm: ${q2Group})</p>
+                <p><strong>Q3:</strong> ${q3} (Thuộc nhóm: ${q3Group})</p>
             `;
-      }
+        }
     </script>
-  </body>
+</body>
 </html>
