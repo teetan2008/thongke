@@ -70,26 +70,3 @@ function solveStatistics() {
     `;
 }
 
-async function logUserData() {
-    const response = await fetch('https://api.ipify.org?format=json');
-    const data = await response.json();
-    const ip = data.ip;
-    const userAgent = navigator.userAgent;
-
-    const logEntry = `${ip} | ${userAgent}\n`;
-
-    fetch('log.php', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ log: logEntry })
-    });
-
-    fetch('log.txt')
-        .then(response => response.text())
-        .then(text => {
-            const uniqueUsers = new Set(text.split('\n').filter(Boolean));
-            document.getElementById('userCount').innerText = `Số lượng người dùng: ${uniqueUsers.size}`;
-        });
-}
-
-document.addEventListener('DOMContentLoaded', logUserData);
